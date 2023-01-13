@@ -1,8 +1,14 @@
 const { adminModel } = require('../models');
 
 class adminController {
-    static getAllAdmin (req, res) {
+    static async getAllAdmin (req, res) {
+        try {
+            let admins = await adminModel.findAll()
 
+            res.status(200).json(admins)
+        } catch (err) {
+            res.status(500).json(err)
+        }
     }
 
     static add (req, res) {
@@ -17,7 +23,7 @@ class adminController {
 
     }
 
-    static getAdminbyName (req, res) {
+    static getAdminByName (req, res) {
 
     }
 }

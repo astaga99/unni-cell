@@ -5,6 +5,6 @@ adminRoute.get("/", adminController.getAllAdmin);
 adminRoute.post("/", adminController.add);
 adminRoute.put("/:id", adminController.update);
 adminRoute.delete("/:id", adminController.delete);
-adminRoute.get("/account/:name", adminController.getAdminbyName);
+adminRoute.get("/account/:name", adminController.getAdminByName);
 
 module.exports = adminRoute;

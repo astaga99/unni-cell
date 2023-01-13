@@ -1,8 +1,14 @@
 const { brandModel } = require('../models');
 
 class brandController {
-    static getAllbrand (req, res) {
+    static async getAllBrand (req, res) {
+        try {
+            let brand = await brandModel.findAll() 
 
+            res.status(200).json(brand)
+        } catch (err) {
+            res.status(500).json(err)
+        }
     }
 
     static add (req, res) {
@@ -17,7 +23,7 @@ class brandController {
 
     }
 
-    static getBrandbyName (req, res) {
+    static getBrandByName (req, res) {
 
     }
 }
