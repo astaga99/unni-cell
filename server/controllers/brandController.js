@@ -1,11 +1,11 @@
-const { brandModel } = require('../models');
+const { Brand } = require('../models');
 
 class brandController {
     static async getAllBrand (req, res) {
         try {
-            let brand = await brandModel.findAll() 
+            let brands = await Brand.findAll() 
 
-            res.status(200).json(brand)
+            res.status(200).json(brands)
         } catch (err) {
             res.status(500).json(err)
         }

@@ -1,9 +1,10 @@
-const { adminModel } = require('../models');
+const { Admin } = require('../models');
+const bcrypt = require('bcrypt');
 
 class adminController {
     static async getAllAdmin (req, res) {
         try {
-            let admins = await adminModel.findAll()
+            let admins = await Admin.findAll()
 
             res.status(200).json(admins)
         } catch (err) {
@@ -11,7 +12,18 @@ class adminController {
         }
     }
 
-    static add (req, res) {
+    static async add (req, res) { 
+        try {
+            const {name, username, email, password} = req.body
+            const pwd = bcrypt.hashSync(String(password), 5)
+
+            let result = await Admin.create({
+                name, username, email, password: pwd
+            })
+            res.status(201).json(result)
+        } catch (err) {
+            res.status(500).json(err)
+        }
 
     } 
 
