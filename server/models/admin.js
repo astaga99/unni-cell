@@ -1,4 +1,7 @@
 'use strict';
+const { encryptPwd } = require('../helpers/encrypt');
+
+
 const {
   Model
 } = require('sequelize');
@@ -11,14 +14,48 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Admin.hasMany(models.Item)
     }
   }
   Admin.init({
-    name: DataTypes.STRING,
-    username: DataTypes.STRING,
-    email: DataTypes.STRING,
-    password: DataTypes.STRING
+    name: {
+      type: DataTypes.STRING,
+      validate: { 
+        notEmpty: {
+        message: "name tidak boleh kosong!"
+        }
+      }
+    },
+    username: {
+      type : DataTypes.STRING,
+      validate : {
+        notEmpty: {
+          message: "username tidak boleh kosong!"
+        }
+      }
+    },
+    email: {
+      type: DataTypes.STRING,
+      validate : {
+        notEmpty: {
+          message: "email tidak boleh kosong!"
+        }
+      }
+    },
+    password: {
+      type: DataTypes.STRING,
+      validate : {
+        notEmpty: {
+          message:"password tidak boleh kosong!"
+        }
+      }
+    }
   }, {
+    hooks: {
+      beforeCreate: function(Admin, options) {
+        Admin.password = encryptPwd(Admin.password)
+      }
+    },
     sequelize,
     modelName: 'Admin',
   });

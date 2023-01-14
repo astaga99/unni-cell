@@ -1,5 +1,4 @@
 const { Admin } = require('../models');
-const bcrypt = require('bcrypt');
 
 class adminController {
     static async getAllAdmin (req, res) {
@@ -15,10 +14,9 @@ class adminController {
     static async add (req, res) { 
         try {
             const {name, username, email, password} = req.body
-            const pwd = bcrypt.hashSync(String(password), 5)
 
             let result = await Admin.create({
-                name, username, email, password: pwd
+                name, username, email, password
             })
             res.status(201).json(result)
         } catch (err) {
@@ -28,6 +26,7 @@ class adminController {
     } 
 
     static update (req, res) {
+
 
     }
 
