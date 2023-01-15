@@ -1,6 +1,6 @@
 const { Admin } = require('../models');
 const { decryptPwd } = require('../helpers/decrypt');
-const { tokenGenerator, tokenVerifier } = require('../helpers/jsonwebtoken')
+const { tokenGeneratorAdmin, tokenVerifier } = require('../helpers/jsonwebtoken')
 
 class adminController {
     static async getAllAdmin (req, res) {
@@ -34,9 +34,9 @@ class adminController {
 
             if (emailFound) {
                 if (decryptPwd(password, emailFound.password)) {
-                    let acces_token = tokenGenerator(emailFound)
+                    let access_token_admin = tokenGeneratorAdmin(emailFound)
 
-                    res.status(200).json({acces_token})
+                    res.status(200).json({access_token_admin})
                 } else {
                     res.status(403).json({
                         message:"Password salah!"
