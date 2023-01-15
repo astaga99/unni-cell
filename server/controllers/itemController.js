@@ -1,4 +1,5 @@
 const { Item, Admin, Brand } = require('../models');
+const { tokenVerifier } = require('../helpers/jsonwebtoken');
 
 class itemController {
     static async getAllitem (req, res) {
@@ -15,7 +16,10 @@ class itemController {
 
     static async add (req, res) {
         try {
-            const { name, image, price, stock, AdminId, BrandId} = req.body
+            const { name, image, price, stock, BrandId} = req.body
+            const acces_token = req.headers.access_token
+
+            let AdminId = tokenVerifier(acces_token).id
             let result = await Item.create({
                 name, image, price, stock, AdminId, BrandId 
             })
@@ -26,6 +30,11 @@ class itemController {
     } 
 
     static update (req, res) {
+        try {
+            
+        } catch (err) {
+
+        }
 
     }
 

@@ -2,9 +2,9 @@ const jwtoken = require("jsonwebtoken")
 const secretCode = "padang"
 
 const tokenGenerator = (data) => {
-    const { username, email, password } = data
+    const { id, name, username, email, password } = data
     return jwtoken.sign({
-        username, email, password
+        id, name, username, email, password
     }, secretCode);
 }
 
