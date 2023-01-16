@@ -17,11 +17,8 @@ class itemController {
     static async add (req, res) {
         try {
             const { name, image, price, stock} = req.body
-            const access_token_admin = req.headers.access_token_admin
-            const access_token_brand = req.headers.access_token_brand
-
-            let AdminId = tokenVerifier(access_token_admin).id
-            let BrandId = tokenVerifier(access_token_brand).id
+            const AdminId = +req.adminData.id 
+            const BrandId = +req.brandData.id
             
             let result = await Item.create({
                 name, image, price, stock, AdminId, BrandId 
