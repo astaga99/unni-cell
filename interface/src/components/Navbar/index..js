@@ -1,15 +1,25 @@
-import React, { useState } from 'react'
+import React, { useState } from "react";
 
-const Navbar = () => {
+const Navbar = (props) => {
+  const {loginStatus, loginCallbackHandler} = props;  
+
+  const loginHandler = () => {
+    loginCallbackHandler(true);
+  };
+
+  const logoutHandler = () => {
+    loginCallbackHandler(false);
+  };
+
   return (
     <>
-      <nav className="navbar navbar-expand-lg bg-body-tertiary">
-        <div className="container-fluid">
-          <a className="navbar-brand" href="#">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">
             Unni-Cell
           </a>
           <button
-            className="navbar-toggler"
+            class="navbar-toggler"
             type="button"
             data-bs-toggle="collapse"
             data-bs-target="#navbarNav"
@@ -17,27 +27,43 @@ const Navbar = () => {
             aria-expanded="false"
             aria-label="Toggle navigation"
           >
-            <span className="navbar-toggler-icon"></span>
+            <span class="navbar-toggler-icon"></span>
           </button>
-          <div className="collapse navbar-collapse" id="navbarNav">
-            <ul className="navbar-nav">
-              <li className="nav-item">
-                <a className="nav-link active" aria-current="page" href="#">
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">
                   Home
                 </a>
               </li>
-              <li className="nav-item">
-                <a className="nav-link" href="#">
-                  Features
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  Items
                 </a>
               </li>
-              <li className="nav-item">
-                <a className="nav-link" href="#">
-                  Pricing
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  Brand
                 </a>
               </li>
-              <li className="nav-item">
-                <a className="nav-link disabled">Disabled</a>
+              <li class="nav-item">
+                {loginStatus ? (
+                  <a
+                    className="nav-link"
+                    href="#"
+                    onClick={() => logoutHandler()}
+                  >
+                    Logout
+                  </a>
+                ) : (
+                  <a
+                    className="nav-link"
+                    href="#"
+                    onClick={() => loginHandler()}
+                  >
+                    Login
+                  </a>
+                )}
               </li>
             </ul>
           </div>
@@ -45,6 +71,6 @@ const Navbar = () => {
       </nav>
     </>
   );
-}
+};
 
-export default Navbar
+export default Navbar;

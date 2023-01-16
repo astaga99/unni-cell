@@ -1,25 +1,23 @@
-import React, { useState, useEffect } from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css'
-import './App.css';
-import './components'
-import { Navbar, Sidebar } from './components';
+import React, { useState, useEffect } from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./App.css";
+import { Navbar } from "./components"
 
 function App() {
   const [loginStatus, setloginStatus] = useState(false);
 
-  const loginHandler = () => {
-      setloginStatus(true)
+  const loginCallbackHandler = (result) => {
+    setloginStatus(result)
   }
 
   return (
     <>
-      <div className="App">
-          <h1>Login Register</h1>
+      <div className="container-fluid">
+        <Navbar loginStatus={loginStatus} loginCallbackHandler={loginCallbackHandler}></Navbar>
 
-          <p>Login status</p>
-          <p>{JSON.stringify(loginStatus)}</p>
 
-          <button onClick={() => loginHandler()}>Login</button>
+        <p>Login status</p>
+        <p>{JSON.stringify(loginStatus)}</p>
       </div>
     </>
   );
