@@ -1,11 +1,16 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css'
 import './App.css';
+import './components'
+import { Navbar } from './components';
 
 function App() {
   return (
     <>
       <div className="App">
-        <h1>Login Register</h1>
+        <Navbar>
+          <h1>Login Register</h1>
+        </Navbar>
       </div>
     </>
   );
