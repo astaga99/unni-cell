@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
-import { Navbar } from "./components"
+import LoginPage from "./pages/LoginPage";
+import HomePage from "./pages/HomePage";
 
 function App() {
-  const [loginStatus, setloginStatus] = useState(false);
+  const [loginStatus, setloginStatus] = useState(true);
 
   const loginCallbackHandler = (result) => {
     setloginStatus(result)
@@ -13,14 +14,15 @@ function App() {
   return (
     <>
       <div className="container-fluid">
-        <Navbar loginStatus={loginStatus} loginCallbackHandler={loginCallbackHandler}></Navbar>
 
+        {!loginStatus ? 
+        <LoginPage></LoginPage> :
+        <HomePage loginStatus={loginStatus} loginCallbackHandler={loginCallbackHandler}></HomePage>  
+        }
 
-        <p>Login status</p>
-        <p>{JSON.stringify(loginStatus)}</p>
       </div>
     </>
   );
-}
+};
 
 export default App;
