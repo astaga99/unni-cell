@@ -8,18 +8,19 @@ const Navbar = (props) => {
   };
 
   const logoutHandler = () => {
+    localStorage.clear()
     loginCallbackHandler(false);
   };
 
   return (
     <>
-      <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="#">
+      <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div className="container-fluid">
+          <a className="navbar-brand" href="#">
             Unni-Cell
           </a>
           <button
-            class="navbar-toggler"
+            className="navbar-toggler"
             type="button"
             data-bs-toggle="collapse"
             data-bs-target="#navbarNav"
@@ -27,26 +28,26 @@ const Navbar = (props) => {
             aria-expanded="false"
             aria-label="Toggle navigation"
           >
-            <span class="navbar-toggler-icon"></span>
+            <span className="navbar-toggler-icon"></span>
           </button>
-          <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">
+          <div className="collapse navbar-collapse" id="navbarNav">
+            <ul className="navbar-nav ms-auto">
+              <li className="nav-item">
+                <a className="nav-link active" aria-current="page" href="#">
                   Home
                 </a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">
+              <li className="nav-item">
+                <a className="nav-link" href="#">
                   Items
                 </a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">
+              <li className="nav-item">
+                <a className="nav-link" href="#">
                   Brand
                 </a>
               </li>
-              <li class="nav-item">
+              <li className="nav-item">
                 {loginStatus ? (
                   <a
                     className="nav-link"
