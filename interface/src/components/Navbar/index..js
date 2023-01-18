@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom"
 
 const Navbar = (props) => {
   const {loginStatus, loginCallbackHandler} = props;  
@@ -14,7 +15,7 @@ const Navbar = (props) => {
 
   return (
     <>
-      <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
+      <nav className="navbar navbar-expand-lg navbar-dark bg-danger bg-gradient">
         <div className="container-fluid">
           <a className="navbar-brand" href="#">
             Unni-Cell
@@ -33,18 +34,18 @@ const Navbar = (props) => {
           <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav ms-auto">
               <li className="nav-item">
-                <a className="nav-link active" aria-current="page" href="#">
+                <Link className="nav-link active" aria-current="page" href="#">
                   Home
-                </a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link" href="#">
-                  Items
-                </a>
+                </Link>
               </li>
               <li className="nav-item">
                 <a className="nav-link" href="#">
                   Brand
+                </a>
+              </li>
+              <li className="nav-item">
+                <a className="nav-link" href="#">
+                  item
                 </a>
               </li>
               <li className="nav-item">

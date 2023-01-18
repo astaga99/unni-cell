@@ -1,10 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
+
 :root{
   --theme-primary: #ffffff;
 }
 body {
   color: #646464;
   background: #e2e2e2;
-}	
+  font-family:'Varela Round', sans-serif;
+}
+
+.nav {
+  color:#8a0000;
+}
+
+
 .login-form {
   width: 300px;
   margin: 30px auto;
