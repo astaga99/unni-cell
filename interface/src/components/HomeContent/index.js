@@ -1,12 +1,13 @@
 import React, {useState, useEffect} from 'react'
 import './styles.css'
 import { getItems } from '../../axios/itemAxios';
+import Loading from '../../helpers/Loading';
 
 const HomeContent = () => {
   const [items, setItems] = useState([])
 
   useEffect(() => {
-    getItems(result => console.log(result)) }, [])
+    getItems(result => setItems(result)) }, [])
   
 
   return (
@@ -16,21 +17,11 @@ const HomeContent = () => {
           <div className="card card-body">
             <div className="media align-items-center align-items-lg-start text-center text-lg-left flex-column flex-lg-row">
               <div className="mr-2 mb-3 mb-lg-0">
-                <img
-                  src="https://i.imgur.com/5Aqgz7o.jpg"
-                  width="150"
-                  height="150"
-                  alt=""
-                />
+                <h1>
+                  Welcome !
+                </h1>
               </div>
-
               <div className="media-body">
-                <h6 className="media-title font-weight-semibold">
-                  <a href="#" data-abc="true">
-                    Voucher Telkomsel
-                  </a>
-                </h6>
-
                 <ul className="list-inline list-inline-dotted mb-3 mb-lg-2">
                   <li className="list-inline-item">
                     <a href="#" className="text-muted" data-abc="true">
@@ -94,7 +85,7 @@ const HomeContent = () => {
               <div className="media-body">
                 <div className="media-title font-weight-semibold">
                   <div className='items-items'>
-                    <table class="table">
+                    <table className="table">
                       <thead>
                         <tr>
                           <th scope="col">#</th>
@@ -104,18 +95,20 @@ const HomeContent = () => {
                         </tr>
                       </thead>
                       <tbody>
-                        <tr>
-                          <th scope="row">1</th>
-                          <td>Mark</td>
-                          <td>Otto</td>
-                          <td>@mdo</td>
-                        </tr>
-                        <tr>
-                          <th scope="row">2</th>
-                          <td>Jacob</td>
-                          <td>Thornton</td>
-                          <td>@fat</td>
-                        </tr>
+                      {
+                        items.length > 0 ? 
+                        items.map(item =>{
+                          const {id, name, price} = item
+                          return (
+                            <tr key={id}>
+                              <td>{id}</td>
+                              <td>{name}</td>
+                              <td>{price}</td>
+                            </tr>
+                          )
+                        }) : 
+                        <Loading></Loading>
+                      }
                       </tbody>
                     </table>
                   </div>
