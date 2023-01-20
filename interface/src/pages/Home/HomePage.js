@@ -14,12 +14,12 @@ const HomePage = (props) => {
         loginCallbackHandler={loginCallbackHandler}
       ></Navbar>
       <Routes>
-        <Route path="/" element={<HomeContent></HomeContent>}></Route>
+        <Route path="" element={<HomeContent></HomeContent>}></Route>
         <Route path="items" element={<ItemPage></ItemPage>}>
           <Route path="" element={<ListItem></ListItem>}></Route>
-          <Route path="create" element={<AddItem></AddItem>}></Route>
+          <Route path="add" element={<AddItem></AddItem>}></Route>
         </Route>
-        <Route path="/brands" element={<BrandsPage></BrandsPage>}></Route>
+        <Route path="brands" element={<BrandsPage></BrandsPage>}></Route>
       </Routes>
     </div>
   );
