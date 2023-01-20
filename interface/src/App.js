@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
-import LoginPage from "./pages/LoginPage";
-import HomePage from "./pages/HomePage";
+import { LoginPage, HomePage } from "./pages/Home";
 
 function App() {
   const [loginStatus, setloginStatus] = useState(false);

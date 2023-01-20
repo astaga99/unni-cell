@@ -1,10 +1,17 @@
-import HomePage from "./HomePage";
-import ItemPage from "./ItemPage";
-import BrandPage from "./BrandPage";
+import HomePage from "./Home/HomePage";
+import ItemPage from "./Item/ItemPage";
+import AddItem from "./Item/AddItem";
+import ListItem from "./Item/ListItem";
+import { BrandPage, AddBrand, ListBrand } from "./Brand";
+
 
 
 export {
     HomePage,
     ItemPage,
-    BrandPage
+    ListItem,
+    AddItem,
+    BrandPage,
+    AddBrand,
+    ListBrand
 }
