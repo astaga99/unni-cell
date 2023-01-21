@@ -3,6 +3,7 @@ import ItemPage from "./Item/ItemPage";
 import AddItem from "./Item/AddItem";
 import ListItem from "./Item/ListItem";
 import { BrandPage, AddBrand, ListBrand } from "./Brand";
+import UpdateItem from "./Item/UpdateItem";
 
 
 
@@ -13,5 +14,6 @@ export {
     AddItem,
     BrandPage,
     AddBrand,
-    ListBrand
+    ListBrand,
+    UpdateItem
 }

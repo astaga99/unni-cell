@@ -29,11 +29,51 @@ const addItem = async (item) => {
     }
 }
 
+const deleteItem = async (id) => {
+    try {
+        let result = await axios({
+            method : 'DELETE',
+            url: URL + '/' + id
+        })
 
+        console.log(result)
+    } catch (e) {
+        console.log(e)
+    }
+}
+
+
+const editItem = async (id, item) => {
+    try {
+        let result = await axios({
+            method : 'PUT',
+            url: URL + '/' + id,
+            data: item
+        })
+        
+        console.log(result)
+    } catch (e) {
+        console.log(e)
+    }
+}
+
+
+const dataItem = async (id, cb) => {
+    try {
+        let result = await axios({
+            method : 'GET',
+            url: URL + '/data/' + id
+        })
+
+        cb(result.data) //callback
+    } catch (e) {
+        console.log(e)
+    }
+}
 
 
 export {
-    getItems, addItem
+    getItems, addItem, deleteItem, editItem, dataItem
 
 }
 

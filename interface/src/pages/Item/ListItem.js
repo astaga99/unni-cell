@@ -1,17 +1,23 @@
 import React from "react";
 import './ListItem.css'
-import { getItems } from "../../axios/itemAxios";
+import { getItems, deleteItem } from "../../axios/itemAxios";
 import { useEffect, useState } from "react";
 import Loading from "../../helpers/Loading";
 import { TbPlus } from "react-icons/tb";
 import { Link } from "react-router-dom";
 
+
 const ListItem = () => {
   const [items, setItems] = useState([]);
 
   useEffect(() => {
-    getItems((result) => setItems(result));
+    getItems((result) => setItems(result))
   }, []);
+
+  const removeHandler = (id) => {
+      deleteItem(id)
+  }
+
   return (
     <div className="container d-flex justify-content-center mt-20 mb-50">
       <div className="card card-body mt-3">
@@ -32,7 +38,7 @@ const ListItem = () => {
         </div>
 
         <div className="media align-items-center align-items-lg-start text-center text-lg-left flex-column flex-lg-row p-3">
-          <table className="table table-responsive table-hover">
+          <table className="table table-responsive-lg table-hover">
             <thead>
               <tr>
                 <th></th>
@@ -55,11 +61,20 @@ const ListItem = () => {
                       <td>{price}</td>
                       <td>{stock}</td>
                       <td>
-                        <button
+                        <Link
+                          to={`/items/edit/${id}`}
                           type="button"
-                          className="btn btn-outline-danger"
+                          className="btn btn-outline-danger btn-sm text-decoration-none"
                         >
                           Edit
+                        </Link>
+
+                        <button
+                          onClick={() => removeHandler(+id)}
+                          type="button"
+                          className="btn btn-outline-secondary btn-sm"
+                        >
+                          Del
                         </button>
                       </td>
                     </tr>

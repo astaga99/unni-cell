@@ -1,9 +1,9 @@
-import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import React, { useState, useEffect } from 'react'
+import { useNavigate, useParams } from 'react-router-dom'
 import './AddItem.css'
-import { addItem } from '../../axios/itemAxios'
+import { editItem, dataItem } from '../../axios/itemAxios'
 
-const TambahVoucher = () => {
+const UpdateItem = () => {
   const [form, setForm] = useState ({
     name:"",
     image:"testimage",
@@ -12,9 +12,23 @@ const TambahVoucher = () => {
     })
 
   const navigation = useNavigate()
+  const params = useParams()
+
+  useEffect(() => {
+    const { id } = params;
+    dataItem(+id, (result) => {
+      setForm({
+        name: result.name,
+        image: result.image,
+        price: result.price,
+        stock: result.stock,
+      });
+    });
+  }, []);
+
 
   const submitHandler = () => {
-    addItem(form)
+    editItem(+params.id, form)
     navigation('/items')
   }
 
@@ -23,7 +37,7 @@ const TambahVoucher = () => {
       <div className='card p-5 shadow border border-danger'>
         <form>
           <div className='mx-auto'>
-            <h3>Tambah Voucher</h3>
+            <h3>Update Voucher</h3>
           </div>
             {/* <!-- 2 column grid layout with text inputs for the first and last names --> */}
             <div className="row my-4">
@@ -66,7 +80,7 @@ const TambahVoucher = () => {
             <button 
               onClick={() => submitHandler()}
               className="btn btn-outline-danger">
-              Add
+              Update
             </button>
           </form>
           </div>
@@ -74,4 +88,4 @@ const TambahVoucher = () => {
   )
 }
 
-export default TambahVoucher
+export default UpdateItem
