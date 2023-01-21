@@ -15,14 +15,14 @@ const getItems = async (cb) => {
     }
 }
 
-const addItems = async (items) => {
+const addItem = async (item) => {
     try {
-        let result = await axios({
+        let items = await axios({
             method: 'POST',
             url: URL,
-            data: items
+            data: item
         })
-        console.log(result.items)
+        console.log(items.data)
     } catch (e) {
         console.log(e);
     }
@@ -32,7 +32,7 @@ const addItems = async (items) => {
 
 
 export {
-    getItems, addItems
+    getItems, addItem
 
 }
 

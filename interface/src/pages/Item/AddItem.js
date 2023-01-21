@@ -1,16 +1,17 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import './AddItem.css'
-import { addItems } from '../../axios/itemAxios'
+import { addItem } from '../../axios/itemAxios'
 
-const AddItem = () => {
-  const [form, setForm] = useState({
+const TambahVoucher = () => {
+  const [form, setForm] = useState ({
     name:"",
+    image:"testimage",
     price:0,
     stock:0
-  })
+    })
 
   const submitHandler = () => {
-    addItems(form)
+    addItem(form)
   }
 
   return (
@@ -24,12 +25,11 @@ const AddItem = () => {
             <div className="row my-4">
                 <div className="form-outline">
                   <input
-                    onChange={(e) => setForm({...form, name: e.target.value})}
+                    onChange={(e) => setForm({ ...form, name: e.target.value })}
                     type="text"
-                    id="form3Example1"
                     className="form-control"
                   />
-                  <label className="form-label" for="form3Example1">
+                  <label className="form-label">
                     Nama
                   </label>
                 </div>
@@ -38,11 +38,10 @@ const AddItem = () => {
             {/* <!-- Email input --> */}
               <div className="form-outline my-5">
                   <input 
-                      onChange={(e) => setForm({...form, price: e.target.value})}
+                      onChange={(e) => setForm({ ...form, price: e.target.value })}
                       type="text" 
-                      id="form3Example3" 
                       className="form-control" />
-                  <label className="form-label" for="form3Example3">
+                  <label className="form-label">
                 Price
                   </label>
               </div>
@@ -50,11 +49,11 @@ const AddItem = () => {
             {/* <!-- Password input --> */}
             <div className="form-outline my-5">
               <input
-                onChange={(e) => setForm({...form, stock: e.target.value})}
+                onChange={(e) => setForm({ ...form, stock: e.target.value })}
                 type="text"
                 className="form-control"
               />
-              <label className="form-label" for="form3Example4">
+              <label className="form-label">
                 Stock
               </label>
             </div>
@@ -62,7 +61,6 @@ const AddItem = () => {
             {/* <!-- Submit button --> */}
             <button 
               onClick={() => submitHandler()}
-              type="submit" 
               className="btn btn-outline-danger">
               Add
             </button>
@@ -72,4 +70,4 @@ const AddItem = () => {
   )
 }
 
-export default AddItem
+export default TambahVoucher
