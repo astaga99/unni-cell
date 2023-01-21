@@ -16,9 +16,8 @@ class itemController {
 
     static async add (req, res) {
         try {
-            const { name, image, price, stock} = req.body
+            const { name, image, price, stock, BrandId} = req.body
             const AdminId = +req.adminData.id 
-            const BrandId = +req.brandData.id
             
             let result = await Item.create({
                 name, image, price, stock, AdminId, BrandId 
