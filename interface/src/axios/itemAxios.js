@@ -17,12 +17,13 @@ const getItems = async (cb) => {
 
 const addItem = async (item) => {
     try {
-        let items = await axios({
-            method: 'POST',
+        let result = await axios({
+            method : 'POST',
             url: URL,
             data: item
         })
-        console.log(items.data)
+
+        console.log(result.data)
     } catch (e) {
         console.log(e);
     }
