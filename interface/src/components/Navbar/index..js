@@ -18,7 +18,7 @@ const Navbar = (props) => {
       <nav className="navbar navbar-expand-lg navbar-dark bg-danger bg-gradient">
         <div className="container-fluid">
           <a className="navbar-brand" href="#">
-            Unni-Cell
+            UNNI-CELL
           </a>
           <button
             className="navbar-toggler"
