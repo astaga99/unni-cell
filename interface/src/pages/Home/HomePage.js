@@ -2,7 +2,7 @@ import React from "react";
 import { Navbar, HomeContent } from "../../components";
 import { Routes, Route } from "react-router-dom";
 import { ItemPage, ListItem, AddItem } from "../Item";
-import { BrandsPage } from "../Brand";
+import { BrandsPage, ListBrand } from "../Brand";
 import UpdateItem from "../Item/UpdateItem";
 
 const HomePage = (props) => {
@@ -23,7 +23,10 @@ const HomePage = (props) => {
             <Route path=":id" element={<UpdateItem></UpdateItem>}></Route>
           </Route>
         </Route>
-        <Route path="brands" element={<BrandsPage></BrandsPage>}></Route>
+        <Route path="brands" element={<BrandsPage></BrandsPage>}>
+          <Route path="" element={<ListBrand></ListBrand>}></Route>
+          <Route path="add" element={<AddItem></AddItem>}></Route>
+        </Route>
       </Routes>
     </div>
   );

@@ -1,9 +1,26 @@
-import React from 'react'
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 
 const ListBrand = () => {
-  return (
-    <div>ListBrand</div>
-  )
-}
+  const URL = "http://localhost:3000/api/brands";
+  const [brands, setBrands] = useState();
 
-export default ListBrand
+  useEffect(() => {
+    getBrands();
+  }, []);
+
+  const getBrands = async () => {
+    const result = await axios.get(URL);
+    setBrands(result.data);
+  };
+
+  return (
+    <div className="box">
+      <div className="container">
+        test
+        </div>
+      </div>
+  );
+};
+
+export default ListBrand;
