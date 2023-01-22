@@ -4,7 +4,7 @@ import "./BrandsPage.css";
 
 const BrandsPage = () => {
   return (
-   <div className="brands-page">
+   <div className="brands-page p-3">
     <Outlet></Outlet>
    </div>
   );
