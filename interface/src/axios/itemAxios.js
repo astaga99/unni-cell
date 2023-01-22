@@ -31,12 +31,8 @@ const addItem = async (item) => {
 
 const deleteItem = async (id) => {
     try {
-        let result = await axios({
-            method : 'DELETE',
-            url: URL + '/' + id
-        })
-
-        console.log(result)
+        await axios.delete(`http://localhost:3000/api/items/${id}`);
+        getItems()
     } catch (e) {
         console.log(e)
     }

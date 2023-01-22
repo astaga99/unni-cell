@@ -1,21 +1,31 @@
 import React from "react";
 import './ListItem.css'
-import { getItems, deleteItem } from "../../axios/itemAxios";
+// import { deleteItem } from "../../axios/itemAxios";
 import { useEffect, useState } from "react";
 import Loading from "../../helpers/Loading";
 import { TbPlus } from "react-icons/tb";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 
 const ListItem = () => {
+  const URL = "http://localhost:3000/api/items";
   const [items, setItems] = useState([]);
 
-  useEffect(() => {
-    getItems((result) => setItems(result))
-  }, []);
+  useEffect(() => {getItems()}, []);
 
-  const removeHandler = (id) => {
-      deleteItem(id)
+  const getItems = async () => {
+    const result = await axios.get(URL);
+    setItems(result.data)
+  }
+
+  const deleteItem = async (id) => {
+    try {
+        await axios.delete(URL + '/' + id);
+        getItems()
+    } catch (e) {
+        console.log(e)
+    }
   }
 
   return (
@@ -43,7 +53,6 @@ const ListItem = () => {
               <tr>
                 <th></th>
                 <th>Voucher</th>
-                <th>Date Created</th>
                 <th>Price</th>
                 <th>Stock</th>
                 <th>Action</th>
@@ -57,7 +66,6 @@ const ListItem = () => {
                     <tr key={id}>
                       <td>{image}</td>
                       <td>{name}</td>
-                      <td>{createdAt}</td>
                       <td>{price}</td>
                       <td>{stock}</td>
                       <td>
@@ -70,7 +78,7 @@ const ListItem = () => {
                         </Link>
 
                         <button
-                          onClick={() => removeHandler(+id)}
+                          onClick={() => deleteItem(id)}
                           type="button"
                           className="btn btn-outline-secondary btn-sm"
                         >
