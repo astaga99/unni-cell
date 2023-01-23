@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Loading from "../../helpers/Loading";
+import './ListBrand.css'
+import { Link } from "react-router-dom";
 
 const ListBrand = () => {
   const URL = "http://localhost:3000/api/brands";
@@ -33,9 +35,9 @@ const ListBrand = () => {
                   <div className="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                     <div className="box-part text-center">
                       <div className="title" key={id}>
-                        <h1>{name}</h1>
+                        <img src={name} className="img-fluid"></img>
                         <h3>{address}</h3>
-                        <h3>{website}</h3>
+                        <a href={website} target="_blank" rel="noreferrer noopener">{website}</a>
                       </div>
                     </div>
                   </div>
