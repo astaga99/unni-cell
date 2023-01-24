@@ -3,16 +3,29 @@ import "./styles.css";
 import { getItems } from "../../axios/itemAxios";
 import Loading from "../../helpers/Loading";
 import { FaQuoteLeft } from 'react-icons/fa'
+import axios from "axios";
 
 const HomeContent = () => {
   const [items, setItems] = useState([]);
+  const [quotes, setQuotes] = useState([]);
 
   useEffect(() => {
     getItems((result) => setItems(result));
   }, []);
 
+  const getQuotes = async () => {
+    try {
+      const result = await axios.get("https://api.quotable.io/random");
+      console.log(result.data.content)
+      setQuotes(result.data.content)
+
+    } catch (e) {
+      console.log(e)
+    }
+  }    
+
   return (
-    <div className="container d-flex justify-content-center mt-50 mb-50">
+    <div className="container mt-3">
       <div className="row">
         <div className="col-md-10">
           <div className="card card-body">
@@ -32,19 +45,19 @@ const HomeContent = () => {
                       <div class="card-body">
                         <blockquote class="blockquote blockquote-custom bg-white px-3 pt-4">
                           <div class="blockquote-custom-icon bg-danger shadow-1-strong">
-                            <i class="fa fa-quote-left text-white"><FaQuoteLeft></FaQuoteLeft></i>
+                            <button 
+                                class="btn btn-sm btn-outline danger"
+                                onClick={getQuotes}>
+                              < i className="fa fa-quote-left text-white">
+                              <FaQuoteLeft></FaQuoteLeft>
+                              </i> 
+                            </button>
                           </div>
-                          <p class="mb-0 mt-2 font-italic">
-                            "Lorem ipsum dolor sit amet, consectetur adipiscing
-                            elit, sed do eiusmod tempor incididunt ut labore et
-                            dolore magna aliqua. Ut enim ad minim veniam, quis
-                            nostrud exercitation ullamco laboris nisi ut aliquip
-                            ex ea commodo."
-                          </p>
+                            {<p>{quotes}</p>}           
                           <footer class="blockquote-footer pt-4 mt-4 border-top">
-                            Someone famous in
-                            <cite title="Source Title">Source Title</cite>
+                            Pepatah bijak
                           </footer>
+                        
                         </blockquote>
                       </div>
                     </div>
@@ -57,31 +70,32 @@ const HomeContent = () => {
           <div className="card card-body mt-3">
             <div className="media align-items-center align-items-lg-start text-center text-lg-left flex-column flex-lg-row">
               <div className="mr-2 mb-3 mb-lg-0">
-                <h1>Daftar item</h1>
+                <h3>List Voucher</h3>
               </div>
             </div>
 
-            <div className="media-body">
-              <div className="media-title font-weight-semibold">
+            <div className="card card-body mt-3">
+              <div className="media align-items-center align-items-lg-start text-center text-lg-left flex-column flex-lg-row p-3">
                 <div className="items-items">
-                  <table className="table">
+                  <table className="table table-responsive table-hover">
                     <thead>
                       <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">First</th>
-                        <th scope="col">Last</th>
-                        <th scope="col">Handle</th>
+                        <th></th>
+                        <th>Voucher</th>
+                        <th>Price</th>
+                        <th>Stock</th>
                       </tr>
                     </thead>
                     <tbody>
                       {items.length > 0 ? (
                         items.map((item) => {
-                          const { id, name, price } = item;
+                          const { id, name, price, stock, image } = item;
                           return (
                             <tr key={id}>
-                              <td>{id}</td>
+                              <td>{image}</td>
                               <td>{name}</td>
                               <td>{price}</td>
+                              <td>{stock}</td>
                             </tr>
                           );
                         })
